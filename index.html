@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Web App</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .box { width: 300px; padding: 15px; border: 1px solid #999; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+
+<h2>Simple Form with Validation</h2>
+
+<div class="box">
+    <label>Name:</label><br>
+    <input type="text" id="name"><br>
+    <p id="nameErr" class="error"></p>
+
+    <label>Email:</label><br>
+    <input type="text" id="email"><br>
+    <p id="emailErr" class="error"></p>
+
+    <button onclick="submitForm()">Submit</button>
+
+    <p id="result"></p>
+</div>
+
+<script>
+function submitForm() {
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+
+    document.getElementById("nameErr").innerHTML = "";
+    document.getElementById("emailErr").innerHTML = "";
+    document.getElementById("result").innerHTML = "";
+
+    let valid = true;
+
+    if (name.length < 3) {
+        document.getElementById("nameErr").innerHTML = "Name must be at least 3 characters";
+        valid = false;
+    }
+
+    if (!email.includes("@")) {
+        document.getElementById("emailErr").innerHTML = "Enter a valid email";
+        valid = false;
+    }
+
+    if (valid) {
+        document.getElementById("result").innerHTML =
+            "<span class='success'>Form submitted successfully!</span>";
+    }
+}
+</script>
+
+</body>
+</html>
